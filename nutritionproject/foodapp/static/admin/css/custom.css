@@ -1,0 +1,24 @@
+/* Change the header background to green */
+.nav-sidebar .nav-header,
+#header {
+    background-color: #28a745; /* Bootstrap green */
+}
+body {
+    background-color: #dff0d8; /* Light green */
+}
+.module h2, .grp-module h2 {
+    color: #4caf50; /* Green text */
+}
+
+
+/* Change button colors */
+.button,
+.btn {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+/* Change links color */
+a {
+    color: #28a745 !important;
+}

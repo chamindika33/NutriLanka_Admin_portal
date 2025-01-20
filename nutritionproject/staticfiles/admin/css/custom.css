@@ -1,0 +1,22 @@
+/* Change the body background color */
+body {
+    background-color: #e0ffe0 !important; /* Light green */
+}
+
+/* Change the header text color */
+#header {
+    background-color: #4caf50 !important; /* Green */
+    color: white !important;
+}
+
+/* Change button styles */
+button {
+    background-color: #4caf50 !important; /* Green */
+    color: white !important;
+    border: none !important;
+}
+
+/* Change the sidebar background */
+#sidebar {
+    background-color: #dff0d8 !important;
+}
