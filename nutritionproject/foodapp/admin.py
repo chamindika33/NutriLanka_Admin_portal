@@ -7,6 +7,6 @@ admin.site.index_title = "Welcome to NutriLanka Administration"
 
 class FoodAdmin(admin.ModelAdmin):
     class Media:
-        js = ('foodapp/js/add_food.js',) 
+        js = ('foodapp/js/add_food.js','foodapp/js/get_food.js') 
 
 admin.site.register(Food,FoodAdmin)

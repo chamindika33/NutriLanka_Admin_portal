@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+
+{% if food.food_img %}
+    <img src="{{ food.food_img.url }}" alt="{{ food.food_name }}">
+{% else %}
+    <p>No image uploaded.</p>
+{% endif %}
+
+{% block submit_buttons_bottom %}
+<div class="submit-row">
+    <input type="submit" value="Save" class="default" name="_save">
+    <input type="reset" value="Clear Form"  name="_clear">
+</div>
+{% endblock %}

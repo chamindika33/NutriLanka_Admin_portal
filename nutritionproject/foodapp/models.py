@@ -21,6 +21,7 @@ class Food(models.Model):
     selenium= models.FloatField()
     copper= models.FloatField()
     manganese= models.FloatField()
-
+    food_image = models.ImageField(upload_to='food_images/', blank=True, null=True)
+    
     def __str__(self):
         return self.food_name

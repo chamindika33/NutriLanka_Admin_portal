@@ -1,0 +1,55 @@
+{% extends "admin/change_list.html" %}
+{% block content %}
+
+  <div class="actions"> 
+    <label>
+      Action: 
+      <select name="action" required="">
+  <!-- <option value="" selected="">---------</option> -->
+
+      <option value="delete_selected">Delete selected foods</option>
+
+      </select>
+    </label>
+    <input type="hidden" name="select_across" value="0" class="select-across"> 
+    <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> 
+    <span class="action-counter" data-actions-icnt="3">select to delete</span> 
+
+  </div>
+
+  <div class="results">
+    <table id="result_list">
+    <thead>
+    <tr>
+    
+    <th scope="col" class="action-checkbox-column">
+      
+      <div class="text"><span><input type="checkbox" id="action-toggle" aria-label="Select all objects on this page for an action"></span></div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-__str__ sorted ascending">
+      
+          <div class="sortoptions">
+            <a class="sortremove" href="?o=" title="Remove from sorting"></a>
+            
+            <a href="?o=-1" class="toggle ascending" title="Toggle sorting"></a>
+          </div>
+      
+      <div class="text"><a href="?o=-1">Food</a></div>
+      <div class="clear"></div>
+    </th>
+    </tr>
+    </thead>
+    <tbody>
+    
+    </tbody>
+    </table>
+    </div>
+    <p class="paginator">
+
+      
+      
+      </p>
+<script src="{% static 'foodapp/js/get_food.js' %}"></script>
+
+{% endblock %}

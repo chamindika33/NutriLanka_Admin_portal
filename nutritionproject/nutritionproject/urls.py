@@ -18,12 +18,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from foodapp.views import add_food
+# from foodapp.views import add_food
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('food/add/', add_food, name='add_food'),
+    # path('food/add/', add_food, name='add_food'),
     # path('get-food-data/', get_food_data, name='get_food_data'),
 ]
 
