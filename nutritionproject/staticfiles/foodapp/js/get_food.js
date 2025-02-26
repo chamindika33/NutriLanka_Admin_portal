@@ -60,9 +60,7 @@ let currentPage = 1;
                         <input type="checkbox" name="_selected_action" value="${record.id}" class="action-select" aria-label="Select this object for an action - ${record.food_name}">
                     </td>
                     <th class="field-__str__">
-                        <a href="/admin/add-food-measurement/?food_id=${record.food_id}&food_name=${encodeURIComponent(record.food_name)}" class="food-link">
-                            ${record.food_name}
-                        </a>
+                        <a href="/admin/foodapp/food/add/" class="food-link">${record.food_name}</a>
                     </th>
                 </tr>
                

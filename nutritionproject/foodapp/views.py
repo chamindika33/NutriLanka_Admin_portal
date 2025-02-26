@@ -8,19 +8,11 @@ from django.views.decorators.http import require_http_methods
 from .forms import FoodForm
 
 
-# def add_food(request):
-#     if request.method == "POST":
-#         form = FoodForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('success')  # Define a success page later
-#     else:
-#         form = FoodForm()
-#     return render(request, 'add_food.html', {'form': form})
-
 
 def login_view(request):
     return render(request, 'login.html')
+
+
 
 
 

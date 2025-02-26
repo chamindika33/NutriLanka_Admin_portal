@@ -1,4 +1,5 @@
 {% extends "admin/base_site.html" %}
+{% block title %}NutriLanka Admin Portal{% endblock %}
 
 {% load static %}
 
@@ -7,5 +8,6 @@
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom.css' %}"> -->
 {% endblock %}
 
-
-
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">NutriLanka Admin Portal</a></h1>
+{% endblock %}

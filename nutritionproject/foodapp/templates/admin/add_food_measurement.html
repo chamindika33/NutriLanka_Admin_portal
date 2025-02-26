@@ -1,0 +1,151 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Add Measurement for <span id="selected-food-name"></span></h1>
+
+<div class="input-container">
+    <label for="measurement_unit"><strong>Select Measurement Unit:</strong></label>
+    <select id="measurement_unit" class="vTextField">
+        <option value="">Loading...</option>
+    </select>
+
+    <label for="amount"><strong>Enter Amount:</strong></label>
+    <input type="number" id="amount" class="vTextField" placeholder="Enter amount" required>
+<!-- </div> -->
+
+
+<!-- <div class="submit-row"> -->
+    <button id="backButton" class="button">Back</button>
+    <button id="submitMeasurement" class="button default">Save Measurement</button>
+</div>
+
+<h2>Existing Measurements</h2>
+<form id="delete-measurements-form">
+    <table class="model-list-table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="select-all"></th>  <!-- Select All Checkbox -->
+                <th>Unit Name</th>
+                <th>Weight (grams)</th>
+            </tr>
+        </thead>
+        <tbody id="measurement-table-body">
+            <!-- Measurement data will be added dynamically -->
+        </tbody>
+    </table>
+    <div class="button-container">
+        <button type="button" id="refreshMeasurements" class="button">🔄 Refresh</button>
+        <button type="button" id="deleteMeasurements" class="button">Delete Selected</button>
+    </div>
+</form>
+
+<script src="{% static 'foodapp/js/add_food_measurement.js' %}"></script>
+
+<style>
+    .input-container {
+        display: flex;         
+        align-items: center;   
+        gap: 15px;             
+    }
+
+
+    .input-container label {
+        margin-right: 8px;
+    }
+
+    .input-container select,
+    .input-container input {
+        padding: 5px;
+    }
+    h2 {
+        font-size: 20px;           
+        font-weight: bold;        
+        color: #417893;              
+        margin-top: 20px;         
+        margin-bottom: 10px;       
+        border-bottom: 2px solid #ccc;  
+        padding-bottom: 5px;     
+    }
+
+
+    .model-list-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+
+    .model-list-table th, 
+    .model-list-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap;  
+    }
+
+
+    .model-list-table th {
+        background-color: #f5f5f5;
+    }
+
+
+    .model-list-table th:nth-child(1), 
+    .model-list-table td:nth-child(1) {
+        width: 5%;  
+        text-align: center;
+    }
+
+    .model-list-table th:nth-child(2), 
+    .model-list-table td:nth-child(2) {
+        width: 45%;  
+    }
+
+    .model-list-table th:nth-child(3), 
+    .model-list-table td:nth-child(3) {
+        width: 50%;  
+    }
+
+    #delete-measurements-form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    .button-container {
+        display: flex;
+        justify-content: flex-end; 
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+
+    #deleteMeasurements {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    #deleteMeasurements:hover {
+        background-color: darkred;
+    }
+
+    #refreshMeasurements {
+        background-color: #417893;  
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    #refreshMeasurements:hover {
+        background-color: #417893;
+    }
+
+</style>
+
+{% endblock %}

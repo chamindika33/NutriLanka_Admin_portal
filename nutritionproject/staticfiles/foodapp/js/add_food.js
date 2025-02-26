@@ -54,8 +54,7 @@ $(document).ready(function ($) {
 
     function sendData(formData) {
         $.ajax({
-            // url: 'http://127.0.0.1:8002/nutri-lanka/add-food-record',
-            url: 'http://18.139.84.131:8002/nutri-lanka/add-food-record',
+            url: 'http://127.0.0.1:8002/nutri-lanka/add-food-record',
             type: 'POST',
             contentType: 'application/json',
             // processData: false, // Prevent jQuery from processing FormData

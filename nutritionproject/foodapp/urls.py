@@ -1,8 +1,7 @@
+from django.contrib import admin
 from django.urls import path
-from .views import add_food
-# from .views import login_view
+from foodapp.admin import custom_admin_site  
 
-# urlpatterns = [
-#     path('add-food/',add_food,name='add_food'),
-#      path('login/', login_view, name='login'),
-# ]
+urlpatterns = [
+    path("admin/", custom_admin_site.urls),  
+]
