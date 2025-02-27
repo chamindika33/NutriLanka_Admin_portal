@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Dropdown found, fetching data...");
 
     // Fetch Food Measurement Units and Populate Dropdown
-    fetch("http://127.0.0.1:8002/nutri-lanka/get-food-measurement-list")
+    fetch("http://18.139.84.131:8002/nutri-lanka/get-food-measurement-list")
         .then(response => response.json())
         .then(data => {
             if (data.status) {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     
     function loadMeasurementData(foodId) {
-        fetch(`http://127.0.0.1:8002/nutri-lanka/get-food-measurement-details?food_id=${foodId}`)
+        fetch(`http://18.139.84.131:8002/nutri-lanka/get-food-measurement-details?food_id=${foodId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.status) {
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("Submitting:", payload);
 
-        fetch("http://127.0.0.1:8002/nutri-lanka/add-food-measurements", {
+        fetch("http://18.139.84.131:8002/nutri-lanka/add-food-measurements", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            fetch(`http://127.0.0.1:8002/nutri-lanka/delete-food-measurement?food_id=${foodId}&unit_id=${unitId}`, {
+            fetch(`http://18.139.84.131:8002/nutri-lanka/delete-food-measurement?food_id=${foodId}&unit_id=${unitId}`, {
                 method: "PUT"
             })
             .then(response => response.json())

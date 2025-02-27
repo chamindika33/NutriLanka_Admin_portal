@@ -1,5 +1,5 @@
 console.log("DOM fully loaded and parsed");
-const apiUrl = "http://127.0.0.1:8002/nutri-lanka/all-food-records"; 
+const apiUrl = "http://18.139.84.131:8002/nutri-lanka/all-food-records"; 
 const recordPerPage = 12;
 let currentPage = 1;
 

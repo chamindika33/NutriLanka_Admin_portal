@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchFoodDetails(foodname) {
-    const apiUrl = `http://127.0.0.1:8002/nutri-lanka/get-food-nutrition-info?size=100&name=${foodname}`;
+    const apiUrl = `http://18.139.84.131:8002/nutri-lanka/get-food-nutrition-info?size=100&name=${foodname}`;
 
     fetch(apiUrl)
         .then((response) => {
