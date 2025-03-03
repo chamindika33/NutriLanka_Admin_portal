@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+    <h1>👤 User Report</h1>
+    <button id="exportReportCSV" class="button">📄 Export as CSV</button>
+</div>
+
+<div style="margin-bottom: 20px;"></div>
+
+<table class="model-list-table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Email Verified</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Location</th>
+            <th>Weight in kg</th>
+            <th>Height in cm</th>
+            <th>BMI Value</th>
+            <th>Dietary Preferences</th>
+            <th>User Status</th>
+            <th>Created at</th>
+           
+        </tr>
+    </thead>
+    <tbody id="report-table-body">
+        <!--  Data will be loaded dynamically using JavaScript -->
+    </tbody>
+</table>
+
+<div style="margin-bottom: 20px;"></div>
+<div class="pagination">
+    <button id="prevPage" class="button">⬅️ Previous</button>
+    <span id="pageInfo">Page 1</span>
+    <button id="nextPage" class="button">Next ➡️</button>
+</div>
+
+
+
+<script src="{% static 'foodapp/js/view_user_report.js' %}"></script>
+
+{% endblock %}
+

@@ -11,3 +11,61 @@
 {% block branding %}
     <h1 id="site-name"><a href="{% url 'admin:index' %}">NutriLanka Admin Portal</a></h1>
 {% endblock %}
+
+{% block sidebar %}
+{{ block.super }}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function addFoodReportsTab() {
+            const appSections = document.querySelectorAll(".module");
+
+            let foodappSection = null;
+            appSections.forEach(section => {
+                const header = section.querySelector("caption a");
+                if (header && header.textContent.trim() === "Foodapp") { // Ensure it matches "Foodapp"
+                    foodappSection = section.querySelector("tbody");
+                }
+            });
+
+            if (foodappSection) {
+                // Create "Food Reports" tab dynamically
+                const newRow = document.createElement("tr");
+                newRow.classList.add("model-food-reports");
+
+                newRow.innerHTML = `
+                    <th scope="row">
+                        <a href="#" class="section" id="reports-dropdown-toggle">Reports ▼</a>
+                        <ul id="reports-dropdown" style="display: none; padding-left: 20px; list-style: none;">
+                            <li><a href="/admin/view-report/" class="section">📄 Food Reports</a></li>
+                            <li><a href="/admin/view-user-report/" class="section">👤 User Reports</a></li>
+                            <li><a href="/admin/view-dietary-report/" class="section">🍽️ Dietary Reports</a></li>
+                        </ul>
+                    </th>
+                `;
+
+                foodappSection.appendChild(newRow);
+                console.log("Successfully added Reports to Django Admin sidebar.");
+                document.getElementById("reports-dropdown-toggle").addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const dropdown = document.getElementById("reports-dropdown");
+                    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+                });
+            } else {
+                console.error("'Foodapp' section not found in Django Admin sidebar.");
+            }
+        }
+
+        // Use MutationObserver to detect when elements are loaded
+        const observer = new MutationObserver(() => {
+            if (document.querySelector(".module")) {
+                observer.disconnect(); // Stop observing after elements are found
+                addFoodReportsTab();
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+</script>
+
+{% endblock %}

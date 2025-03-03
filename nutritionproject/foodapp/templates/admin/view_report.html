@@ -1,0 +1,55 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+    <h1>📊 Food Report</h1>
+    <button id="exportReportCSV" class="button">📄 Export as CSV</button>
+</div>
+
+<div style="margin-bottom: 20px;"></div>
+
+<table class="model-list-table">
+    <thead>
+        <tr>
+            <th>Food ID</th>
+            <th>Food Name</th>
+            <th>Native Name</th>
+            <th>Description</th>
+            <th>Calories (kcal)</th>
+            <th>Water (g)</th>
+            <th>Protein (g)</th>
+            <th>Carbohydrates (g)</th>
+            <th>Fat (g)</th>
+            <th>Fiber (g)</th>
+            <th>Iron (mg)</th>
+            <th>Sodium (mg)</th>
+            <th>Calcium (mg)</th>
+            <th>Magnesium (mg)</th>
+            <th>Phosphorus (mg)</th>
+            <th>Potassium (mg)</th>
+            <th>Zinc (mg)</th>
+            <th>Vitamins (mg)</th>
+            <th>Selenium (mg)</th>
+            <th>Manganese (mg)</th>
+        </tr>
+    </thead>
+    <tbody id="report-table-body">
+        <!--  Data will be loaded dynamically using JavaScript -->
+    </tbody>
+</table>
+
+<div style="margin-bottom: 20px;"></div>
+<div class="pagination">
+    <button id="prevPage" class="button">⬅️ Previous</button>
+    <span id="pageInfo">Page 1</span>
+    <button id="nextPage" class="button">Next ➡️</button>
+</div>
+
+
+
+<script src="{% static 'foodapp/js/view_report.js' %}"></script>
+
+{% endblock %}
+

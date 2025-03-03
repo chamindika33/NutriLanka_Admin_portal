@@ -1,24 +1,35 @@
 /* Change the header background to green */
-.nav-sidebar .nav-header,
+/* .nav-sidebar .nav-header,
 #header {
     background-color: #28a745; /* Bootstrap green */
-}
+/* }
 body {
     background-color: #dff0d8; /* Light green */
-}
+/* }
 .module h2, .grp-module h2 {
     color: #4caf50; /* Green text */
-}
+/* } */
 
 
-/* Change button colors */
-.button,
+
+/* .button,
 .btn {
     background-color: #28a745 !important;
     border-color: #28a745 !important;
+} */ 
+
+/* a {
+    color: #28a745 !important;
+} */ 
+
+
+#nav-sidebar .current-app .section:visited {
+    color: #417893;  
+    font-weight: bold;
 }
 
-/* Change links color */
-a {
-    color: #28a745 !important;
+#nav-sidebar .current-app .section:link, 
+#nav-sidebar .current-app .section:hover {
+    color:  #417893; 
 }
+

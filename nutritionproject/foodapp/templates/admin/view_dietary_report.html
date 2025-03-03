@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+    <h1>🍽️ Dietary Reports</h1>
+    <button id="exportReportCSV" class="button">📄 Export as CSV</button>
+</div>
+
+<div style="margin-bottom: 20px;"></div>
+
+<table class="model-list-table">
+    <thead>
+        <tr>
+            <th>Goal ID</th>
+            <th>User ID</th>
+            <th>Target Nutrient</th>
+            <th>Target Value</th>
+            <th>Breakfast Burn</th>
+            <th>Lunch Burn</th>
+            <th>Intermediate Burn</th>
+            <th>Dinner Burn</th>
+            <th>Is Achieved</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+                     
+        </tr>
+    </thead>
+    <tbody id="report-table-body">
+        <!--  Data will be loaded dynamically using JavaScript -->
+    </tbody>
+</table>
+
+<div style="margin-bottom: 20px;"></div>
+<div class="pagination">
+    <button id="prevPage" class="button">⬅️ Previous</button>
+    <span id="pageInfo">Page 1</span>
+    <button id="nextPage" class="button">Next ➡️</button>
+</div>
+
+
+
+<script src="{% static 'foodapp/js/view_dietary_report.js' %}"></script>
+
+{% endblock %}
+
