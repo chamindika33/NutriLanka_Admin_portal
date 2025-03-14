@@ -84,3 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //  Initial Load
     loadReportData(currentPage);
 });
+
+document.getElementById("backButton").addEventListener("click", function () {
+    window.history.back();  // Go to previous page
+});

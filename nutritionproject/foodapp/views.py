@@ -5,6 +5,8 @@ import json
 import csv
 from django.http import HttpResponse
 import requests
+from reportlab.lib.pagesizes import letter, landscape
+from reportlab.pdfgen import canvas
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
@@ -112,6 +114,64 @@ def export_dietary_csv(request):
             user["created_at"], user["updated_at"]
         ])
 
+    return response
+
+def export_pdf(request):
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'attachment; filename="food_report.pdf"'
+
+    # Create PDF canvas
+    pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    pdf.setFont("Helvetica", 12)
+
+    # Fetch Data from API
+    response_data = requests.post(API_URL, json={"page_number": 1, "record_per_page": 100})
+    if response_data.status_code == 200:
+        food_records = response_data.json()["data"]["data"]
+    else:
+        food_records = []
+
+    # Title
+    pdf.drawString(50, 550, "NutriLanka Food Report")
+
+    # Table Header
+    x_offset = 50
+    y_offset = 520
+    headers = ["Food ID", "Food Name", "Native Name", "Description", "Calories", "Water", "Protein",
+        "Carbohydrates", "Fat", "Fiber", "Iron", "Sodium", "Calcium", "Magnesium", "Phosphorus",
+        "Potassium", "Zinc", "Vitamins", "Selenium", "Manganese"]
+    for header in headers:
+        pdf.drawString(x_offset, y_offset, header)
+        x_offset += 100
+
+    # Table Content
+    y_offset -= 20
+    for food in food_records:
+        x_offset = 50
+        pdf.drawString(x_offset, y_offset, str(food["food_id"]))
+        pdf.drawString(x_offset + 100, y_offset, food["food_name"])
+        pdf.drawString(x_offset + 100, y_offset, food["native_name"])
+        pdf.drawString(x_offset + 100, y_offset, food["description"])
+        pdf.drawString(x_offset + 200, y_offset, str(food["calories"]))
+        pdf.drawString(x_offset + 200, y_offset, str(food["water"]))
+        pdf.drawString(x_offset + 300, y_offset, str(food["protein"]))
+        pdf.drawString(x_offset + 400, y_offset, str(food["carbohydrates"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["fat"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["fiber"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["iron"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["sodium"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["calcium"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["magnesium"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["phosphorus"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["potassium"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["zinc"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["vitamins"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["selenium"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["manganese"]))
+        y_offset -= 20
+
+    pdf.showPage()
+    pdf.save()
     return response
 
 

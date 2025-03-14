@@ -5,7 +5,10 @@
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
     <h1>📊 Food Report</h1>
-    <button id="exportReportCSV" class="button">📄 Export as CSV</button>
+    <div style="margin-top: 20px; text-align: right;">
+        <button id="exportReport" class="button">📄 Export as PDF</button>
+        <button id="exportReportCSV" class="button">📄 Export as CSV</button>
+    </div>
 </div>
 
 <div style="margin-bottom: 20px;"></div>
@@ -46,10 +49,26 @@
     <span id="pageInfo">Page 1</span>
     <button id="nextPage" class="button">Next ➡️</button>
 </div>
+<div style="margin-bottom: 20px; text-align: right;">
+    <button id="backButton" class="button">Back</button>
+</div>
 
 
 
 <script src="{% static 'foodapp/js/view_report.js' %}"></script>
+
+<style>
+    h1 {
+        font-size: 20px;           
+        font-weight: bold;        
+        color: #417893;              
+        margin-top: 20px;         
+        margin-bottom: 10px;       
+        border-bottom: 2px solid #ccc;  
+        padding-bottom: 5px;     
+    }
+
+</style>
 
 {% endblock %}
 

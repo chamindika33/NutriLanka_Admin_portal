@@ -1,0 +1,192 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Update Food Details</h1>
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+
+    <!-- Left Side: Food Image & Basic Info -->
+    <div style="flex: 1; max-width: 300px; text-align: center;">
+        <img id="food-image" src="" alt="Food Image" style="max-width: 100%; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+        <input type="file" id="food-image-upload" accept="image/*">
+
+        <div style="margin-top: 10px;">
+            <label>Food Name:</label>
+            <input type="text" id="id_food_name" name="food_name" style="width: 100%; margin-bottom: 10px;">
+            
+            <label>Native Name:</label>
+            <input type="text" id="id_native_name" name="native_name" style="width: 100%;">
+
+            <label>Food Description:</label>
+            <input type="text" id="id_description" name="description" style="width: 100%;">
+        </div>
+    </div>
+
+    <!-- Right Side: Nutrition Form -->
+    <div style="flex: 2;">
+        <form id="food-form" style="display: flex; flex-wrap: wrap; gap: 10px;">
+            
+            <div style="width: 45%;">
+                <label>Calories:</label>
+                <input type="text" id="id_calories" name="calories" style="width: 100%;">
+                
+                <label>Fat:</label>
+                <input type="text" id="id_fat" name="fat" style="width: 100%;">
+                
+                <label>Protein:</label>
+                <input type="text" id="id_protein" name="protein" style="width: 100%;">
+                
+                <label>Carbohydrates:</label>
+                <input type="text" id="id_carbohydrates" name="carbohydrates" style="width: 100%;">
+                
+                <label>Fiber:</label>
+                <input type="text" id="id_fiber" name="fiber" style="width: 100%;">
+                
+                <label>Water:</label>
+                <input type="text" id="id_water" name="water" style="width: 100%;">
+
+                <label>Vitamins:</label>
+                <input type="text" id="id_vitamins" name="vitamins" style="width: 100%;">
+                
+                <label>Calcium:</label>
+                <input type="text" id="id_calcium" name="calcium" style="width: 100%;">
+            
+                <label>Magnesium:</label>
+                <input type="text" id="id_magnesium" name="magnesium" style="width: 100%;">
+            
+            </div>
+
+            <div style="width: 45%;"> 
+                
+                <label>Phosphorus:</label>
+                <input type="text" id="id_phosphorus" name="phosphorus" style="width: 100%;">
+                
+                <label>Sodium:</label>
+                <input type="text" id="id_sodium" name="sodium" style="width: 100%;">
+                
+                <label>Potassium:</label>
+                <input type="text" id="id_potassium" name="potassium" style="width: 100%;">
+            
+                <label>Iron:</label>
+                <input type="text" id="id_iron" name="iron" style="width: 100%;">
+                
+                <label>Zinc:</label>
+                <input type="text" id="id_zinc" name="zinc" style="width: 100%;">
+                
+                <label>Selenium:</label>
+                <input type="text" id="id_selenium" name="selenium" style="width: 100%;">
+                
+                <label>Copper:</label>
+                <input type="text" id="id_copper" name="copper" style="width: 100%;">
+                
+                <label>Manganese:</label>
+                <input type="text" id="id_manganese" name="manganese" style="width: 100%;">
+            
+            
+            </div>
+
+            <!-- <div style="width: 45%;">
+                
+            </div> -->
+        </form>
+
+        <!-- Update Button -->
+        <div style="margin-top: 20px; text-align: right;">
+            <button id="backButton" class="button">Back</button>
+            <button type="button" id="updateFoodBtn" style="padding: 10px 20px; background: green; color: white; border: none; cursor: pointer; border-radius: 5px;">
+                Update
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Include JS -->
+<script>
+    const foodId = "{{ food_id }}"; // Django context variable
+</script>
+<script src="{% static 'foodapp/js/food_details.js' %}"></script>
+
+<style>
+    .input-container {
+        display: flex;         
+        align-items: center;   
+        gap: 15px;             
+    }
+
+
+    .input-container label {
+        margin-right: 8px;
+    }
+
+    .input-container select,
+    .input-container input {
+        padding: 5px;
+    }
+    h1 {
+        font-size: 20px;           
+        font-weight: bold;        
+        color: #417893;              
+        margin-top: 20px;         
+        margin-bottom: 10px;       
+        border-bottom: 2px solid #ccc;  
+        padding-bottom: 5px;     
+    }
+
+
+    .model-list-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+
+    .model-list-table th, 
+    .model-list-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap;  
+    }
+
+
+    .model-list-table th {
+        background-color: #f5f5f5;
+    }
+
+
+    .model-list-table th:nth-child(1), 
+    .model-list-table td:nth-child(1) {
+        width: 5%;  
+        text-align: center;
+    }
+
+    .model-list-table th:nth-child(2), 
+    .model-list-table td:nth-child(2) {
+        width: 45%;  
+    }
+
+    .model-list-table th:nth-child(3), 
+    .model-list-table td:nth-child(3) {
+        width: 50%;  
+    }
+
+    #delete-measurements-form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    .button-container {
+        display: flex;
+        justify-content: flex-end; 
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+
+
+</style>
+{% endblock %}

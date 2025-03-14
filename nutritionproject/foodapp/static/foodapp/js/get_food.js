@@ -64,6 +64,9 @@ let currentPage = 1;
                             ${record.food_name}
                         </a>
                     </th>
+                    <td>
+                        <a href="/admin/update-food/?food_id=${record.food_id}" class="changelink">Change</a>
+                    </td>
                 </tr>
                
             `;
