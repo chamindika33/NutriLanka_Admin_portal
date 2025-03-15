@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextPageBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("pageInfo");
     const exportReportBtn = document.getElementById("exportReportCSV");
+    const pdfReportBtn = document.getElementById("exportReport");
 
     let currentPage = 1;
     const recordsPerPage = 10;
@@ -79,6 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     //  CSV Export
     exportReportBtn.addEventListener("click", () => {
         window.location.href = "/admin/export-user-csv/"; 
+    });
+    
+     //  pdfExport
+    pdfReportBtn.addEventListener("click", () => {
+        window.location.href = "/admin/export-user-pdf/"; 
     });
 
     //  Initial Load

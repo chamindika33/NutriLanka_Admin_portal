@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.template.response import TemplateResponse
 from .models import Food
-from .views import export_csv,export_user_csv,export_dietary_csv,export_pdf
+from .views import export_csv,export_user_csv,export_dietary_csv,export_pdf,export_user_pdf,export_user_dietary_pdf
 
 class CustomAdminSite(admin.AdminSite):
     site_header = "NutriLanka Admin Portal"
@@ -21,6 +21,8 @@ class CustomAdminSite(admin.AdminSite):
             path('view-dietary-report/', self.admin_view(dietary_reports_view), name='view_dietary_report'),
             path("export-csv/", self.admin_view(export_csv), name="export_csv"),
             path("export-pdf/", self.admin_view(export_pdf), name="export_pdf"),
+            path("export-user-pdf/", self.admin_view(export_user_pdf), name="export_user_pdf"),
+            path("export-user-dietary-pdf/", self.admin_view(export_user_dietary_pdf), name="export_user_dietary_pdf"),
             path("export-user-csv/", self.admin_view(export_user_csv), name="export_user_csv"),
             path("export-dietary-csv/", self.admin_view(export_dietary_csv), name="export_dietary_csv")
         ]

@@ -174,6 +174,109 @@ def export_pdf(request):
     pdf.save()
     return response
 
+def export_user_pdf(request):
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'attachment; filename="user_report.pdf"'
+
+    # Create PDF canvas
+    pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    pdf.setFont("Helvetica", 12)
+
+    # Fetch Data from API
+    response_data = requests.post(USER_API_URL, json={"page_number": 1, "record_per_page": 100})
+    print('response data-->',response_data)
+    if response_data.status_code == 200:
+        user_records = response_data.json()["data"]["data"]
+    else:
+        user_records = []
+
+    # Title
+    pdf.drawString(50, 550, "NutriLanka User Report")
+
+    # Table Header
+    x_offset = 50
+    y_offset = 520
+    headers = ["User Name", "Email", "Email Verified", "Date of Birth", 
+        "Gender", "Location", "Weight", "Height", "BMI Value", "Dietary Preferences", 
+        "User Status", "Created at" ]
+    
+    for header in headers:
+        pdf.drawString(x_offset, y_offset, header)
+        x_offset += 100
+
+    # Table Content
+    y_offset -= 20
+    for user in user_records:
+        x_offset = 50
+        # pdf.drawString(x_offset, y_offset, str(user["id"]))
+        pdf.drawString(x_offset + 100, y_offset, user["name"])
+        pdf.drawString(x_offset + 100, y_offset, user["email"])
+        pdf.drawString(x_offset + 100, y_offset, str(user["email_verified"]))
+        pdf.drawString(x_offset + 200, y_offset, str(user["date_of_birth"]))
+        pdf.drawString(x_offset + 200, y_offset, str(user["gender"]))
+        pdf.drawString(x_offset + 300, y_offset, str(user["location"]))
+        pdf.drawString(x_offset + 400, y_offset, str(user["weight"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["height"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["bmi_value"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["dietary_preferences"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["status"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["created_at"]))
+        y_offset -= 20
+
+    pdf.showPage()
+    pdf.save()
+    return response
+
+def export_user_dietary_pdf(request):
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'attachment; filename="user_dietary_report.pdf"'
+
+    # Create PDF canvas
+    pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    pdf.setFont("Helvetica", 12)
+
+    # Fetch Data from API
+    response_data = requests.post(DIETARY_API_URL, json={"page_number": 1, "record_per_page": 100})
+    print('response data-->',response_data)
+    if response_data.status_code == 200:
+        user_records = response_data.json()["data"]["data"]
+    else:
+        user_records = []
+
+    # Title
+    pdf.drawString(50, 550, "NutriLanka User Dietary Report")
+
+    # Table Header
+    x_offset = 50
+    y_offset = 520
+    headers = ["Goal ID", "User ID", "target Nutrient", "Target Value", "Breakfast Burn", 
+        "Lunch Burn", "Intermediate Burn", "Dinner Burn", "Is Achieved", "Created at", "Updated at" ]
+    
+    for header in headers:
+        pdf.drawString(x_offset, y_offset, header)
+        x_offset += 100
+
+    # Table Content
+    y_offset -= 20
+    for user in user_records:
+        x_offset = 50
+        # pdf.drawString(x_offset, y_offset, str(user["id"]))
+        pdf.drawString(x_offset + 100, y_offset, str(user["gole_id"]))
+        pdf.drawString(x_offset + 100, y_offset, str(user["user_id"]))
+        pdf.drawString(x_offset + 100, y_offset, str(user["target_nutrient"]))
+        pdf.drawString(x_offset + 200, y_offset, str(user["target_value"]))
+        pdf.drawString(x_offset + 200, y_offset, str(user["breakfast_burn"]))
+        pdf.drawString(x_offset + 300, y_offset, str(user["lunch_burn"]))
+        pdf.drawString(x_offset + 400, y_offset, str(user["intermediate_burn"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["dinner_burn"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["is_achieved"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["created_at"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["updated_at"]))
+        y_offset -= 20
+
+    pdf.showPage()
+    pdf.save()
+    return response
 
 
 
