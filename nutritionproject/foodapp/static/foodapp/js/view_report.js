@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const apiUrl = "http://18.139.84.131:8002/nutri-lanka/all-food-records";
+    const apiUrl = "https://nutrilanka.shop/nutri-lanka/all-food-records";
     const reportTableBody = document.getElementById("report-table-body");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("pageInfo");
     const exportReportBtn = document.getElementById("exportReportCSV");
     const pdfReportBtn = document.getElementById("exportReport");
+    
 
     let currentPage = 1;
     const recordsPerPage = 10;
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error fetching data:", error));
     }
+
 
     //  Render Table Data
     function renderTable(records) {
@@ -70,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = current === totalPages;
     }
 
+
+ 
     //  Listeners for Pagination
     prevPageBtn.addEventListener("click", () => {
         if (currentPage > 1) {

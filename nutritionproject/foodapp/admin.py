@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import User, Group
 from django.urls import path
 from django.template.response import TemplateResponse
 from .models import Food
@@ -30,6 +31,8 @@ class CustomAdminSite(admin.AdminSite):
 
 
 custom_admin_site = CustomAdminSite(name="nutrilanka_admin")
+custom_admin_site.register(User)
+custom_admin_site.register(Group)
 
 class FoodAdmin(admin.ModelAdmin):
     class Media:

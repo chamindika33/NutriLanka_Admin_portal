@@ -3,13 +3,22 @@
 
 {% block content %}
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px;">
     <h1>🍽️ Dietary Reports</h1>
-    <div style="margin-top: 20px; text-align: right;">
+
+    <div style="display: flex; align-items: center; gap: 2px;">
+        <label for="filter-achieved" style="font-weight: bold; color: #333;">Filter by Achievement:</label>
+        <select id="filter-achieved" class="button" style="padding: 5px; font-size: 12px;">
+            <option value="all" selected>All</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+    </div>
+
+    <div>
         <button id="exportReport" class="button">📄 Export as PDF</button>
         <button id="exportReportCSV" class="button">📄 Export as CSV</button>
     </div>
-  
 </div>
 
 <div style="margin-bottom: 20px;"></div>

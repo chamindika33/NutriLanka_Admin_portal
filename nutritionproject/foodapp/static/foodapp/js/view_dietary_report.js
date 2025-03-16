@@ -1,21 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
     const apiUrl = "http://18.139.84.131:8002/nutri-lanka/get-all-users-dietary-data";
+    const apiDietaryUrl = "https://nutrilanka.shop/nutri-lanka/get-dietary-report-filter";
     const reportTableBody = document.getElementById("report-table-body");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("pageInfo");
     const exportReportBtn = document.getElementById("exportReportCSV");
     const pdfReportBtn = document.getElementById("exportReport");
+    const filterDropdown = document.getElementById("filter-achieved");
 
     let currentPage = 1;
     const recordsPerPage = 10;
 
     //  Fetch and Render Report Data
-    function loadReportData(pageNumber) {
-        fetch(apiUrl, {
+    function loadReportData(filterValue = "all", pageNumber = 1) {
+        let fetchUrl = apiUrl;  // Default: Fetch all data
+        let payload = { page_number: pageNumber, record_per_page: recordsPerPage };
+
+        if (filterValue !== "all") {
+            fetchUrl = apiDietaryUrl;  // Switch to dietary API
+            payload = { 
+                filter_name: "status", 
+                status: filterValue === "true", // Convert string to boolean
+                page_number: pageNumber, 
+                record_per_page: recordsPerPage 
+            };
+        }
+
+        fetch(fetchUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ page_number: pageNumber, record_per_page: recordsPerPage })
+            body: JSON.stringify(payload)
         })
         .then(response => response.json())
         .then(data => {
@@ -28,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error fetching data:", error));
     }
-
     //  Render Table Data
     function renderTable(records) {
         reportTableBody.innerHTML = "";  // Clear existing rows
@@ -62,11 +76,15 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = current === totalPages;
     }
 
+    filterDropdown.addEventListener("change", function () {
+        loadReportData(this.value,currentPage);
+    });
+
     //  Listeners for Pagination
     prevPageBtn.addEventListener("click", () => {
         if (currentPage > 1) {
             currentPage--;
-            loadReportData(currentPage);
+            loadReportData(filterDropdown.value,currentPage);
         }
     });
 
@@ -86,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //  Initial Load
-    loadReportData(currentPage);
+    loadReportData("all",currentPage);
 });
 
 document.getElementById("backButton").addEventListener("click", function () {
