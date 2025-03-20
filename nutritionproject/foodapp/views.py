@@ -119,9 +119,11 @@ def export_dietary_csv(request):
 def export_pdf(request):
     response = HttpResponse(content_type="application/pdf")
     response["Content-Disposition"] = 'attachment; filename="food_report.pdf"'
+    custom_width = 2000  
+    custom_height = 800  
 
     # Create PDF canvas
-    pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    pdf = canvas.Canvas(response, pagesize=(custom_width, custom_height))
     pdf.setFont("Helvetica", 12)
 
     # Fetch Data from API
@@ -150,24 +152,24 @@ def export_pdf(request):
         x_offset = 50
         pdf.drawString(x_offset, y_offset, str(food["food_id"]))
         pdf.drawString(x_offset + 100, y_offset, food["food_name"])
-        pdf.drawString(x_offset + 100, y_offset, food["native_name"])
-        pdf.drawString(x_offset + 100, y_offset, food["description"])
-        pdf.drawString(x_offset + 200, y_offset, str(food["calories"]))
-        pdf.drawString(x_offset + 200, y_offset, str(food["water"]))
-        pdf.drawString(x_offset + 300, y_offset, str(food["protein"]))
-        pdf.drawString(x_offset + 400, y_offset, str(food["carbohydrates"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["fat"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["fiber"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["iron"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["sodium"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["calcium"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["magnesium"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["phosphorus"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["potassium"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["zinc"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["vitamins"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["selenium"]))
-        pdf.drawString(x_offset + 500, y_offset, str(food["manganese"]))
+        pdf.drawString(x_offset + 200, y_offset, food["native_name"])
+        pdf.drawString(x_offset + 300, y_offset, food["description"])
+        pdf.drawString(x_offset + 400, y_offset, str(food["calories"]))
+        pdf.drawString(x_offset + 500, y_offset, str(food["water"]))
+        pdf.drawString(x_offset + 600, y_offset, str(food["protein"]))
+        pdf.drawString(x_offset + 700, y_offset, str(food["carbohydrates"]))
+        pdf.drawString(x_offset + 800, y_offset, str(food["fat"]))
+        pdf.drawString(x_offset + 900, y_offset, str(food["fiber"]))
+        pdf.drawString(x_offset + 1000, y_offset, str(food["iron"]))
+        pdf.drawString(x_offset + 1100, y_offset, str(food["sodium"]))
+        pdf.drawString(x_offset + 1200, y_offset, str(food["calcium"]))
+        pdf.drawString(x_offset + 1300, y_offset, str(food["magnesium"]))
+        pdf.drawString(x_offset + 1400, y_offset, str(food["phosphorus"]))
+        pdf.drawString(x_offset + 1500, y_offset, str(food["potassium"]))
+        pdf.drawString(x_offset + 1600, y_offset, str(food["zinc"]))
+        pdf.drawString(x_offset + 1700, y_offset, str(food["vitamins"]))
+        pdf.drawString(x_offset + 1800, y_offset, str(food["selenium"]))
+        pdf.drawString(x_offset + 1900, y_offset, str(food["manganese"]))
         y_offset -= 20
 
     pdf.showPage()
@@ -177,9 +179,10 @@ def export_pdf(request):
 def export_user_pdf(request):
     response = HttpResponse(content_type="application/pdf")
     response["Content-Disposition"] = 'attachment; filename="user_report.pdf"'
-
+    custom_width = 2000  
+    custom_height = 800 
     # Create PDF canvas
-    pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    pdf = canvas.Canvas(response, pagesize=(custom_width, custom_height))
     pdf.setFont("Helvetica", 12)
 
     # Fetch Data from API
@@ -210,17 +213,17 @@ def export_user_pdf(request):
         x_offset = 50
         # pdf.drawString(x_offset, y_offset, str(user["id"]))
         pdf.drawString(x_offset + 100, y_offset, user["name"])
-        pdf.drawString(x_offset + 100, y_offset, user["email"])
-        pdf.drawString(x_offset + 100, y_offset, str(user["email_verified"]))
-        pdf.drawString(x_offset + 200, y_offset, str(user["date_of_birth"]))
-        pdf.drawString(x_offset + 200, y_offset, str(user["gender"]))
-        pdf.drawString(x_offset + 300, y_offset, str(user["location"]))
-        pdf.drawString(x_offset + 400, y_offset, str(user["weight"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["height"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["bmi_value"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["dietary_preferences"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["status"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["created_at"]))
+        pdf.drawString(x_offset + 500, y_offset, user["email"])
+        pdf.drawString(x_offset + 600, y_offset, str(user["email_verified"]))
+        pdf.drawString(x_offset + 700, y_offset, str(user["date_of_birth"]))
+        pdf.drawString(x_offset + 800, y_offset, str(user["gender"]))
+        pdf.drawString(x_offset + 900, y_offset, str(user["location"]))
+        pdf.drawString(x_offset + 1000, y_offset, str(user["weight"]))
+        pdf.drawString(x_offset + 1100, y_offset, str(user["height"]))
+        pdf.drawString(x_offset + 1200, y_offset, str(user["bmi_value"]))
+        pdf.drawString(x_offset + 1300, y_offset, str(user["dietary_preferences"]))
+        pdf.drawString(x_offset + 1400, y_offset, str(user["status"]))
+        pdf.drawString(x_offset + 1500, y_offset, str(user["created_at"]))
         y_offset -= 20
 
     pdf.showPage()
@@ -230,9 +233,12 @@ def export_user_pdf(request):
 def export_user_dietary_pdf(request):
     response = HttpResponse(content_type="application/pdf")
     response["Content-Disposition"] = 'attachment; filename="user_dietary_report.pdf"'
+    custom_width = 2000  
+    custom_height = 800  
 
     # Create PDF canvas
-    pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    # pdf = canvas.Canvas(response, pagesize=landscape(letter))
+    pdf = canvas.Canvas(response, pagesize=(custom_width, custom_height))
     pdf.setFont("Helvetica", 12)
 
     # Fetch Data from API
@@ -261,17 +267,17 @@ def export_user_dietary_pdf(request):
     for user in user_records:
         x_offset = 50
         # pdf.drawString(x_offset, y_offset, str(user["id"]))
-        pdf.drawString(x_offset + 100, y_offset, str(user["gole_id"]))
+        pdf.drawString(x_offset ,y_offset, str(user["gole_id"]))
         pdf.drawString(x_offset + 100, y_offset, str(user["user_id"]))
-        pdf.drawString(x_offset + 100, y_offset, str(user["target_nutrient"]))
-        pdf.drawString(x_offset + 200, y_offset, str(user["target_value"]))
-        pdf.drawString(x_offset + 200, y_offset, str(user["breakfast_burn"]))
-        pdf.drawString(x_offset + 300, y_offset, str(user["lunch_burn"]))
-        pdf.drawString(x_offset + 400, y_offset, str(user["intermediate_burn"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["dinner_burn"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["is_achieved"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["created_at"]))
-        pdf.drawString(x_offset + 500, y_offset, str(user["updated_at"]))
+        pdf.drawString(x_offset + 200, y_offset, str(user["target_nutrient"]))
+        pdf.drawString(x_offset + 300, y_offset, str(user["target_value"]))
+        pdf.drawString(x_offset + 400, y_offset, str(user["breakfast_burn"]))
+        pdf.drawString(x_offset + 500, y_offset, str(user["lunch_burn"]))
+        pdf.drawString(x_offset + 600, y_offset, str(user["intermediate_burn"]))
+        pdf.drawString(x_offset + 700, y_offset, str(user["dinner_burn"]))
+        pdf.drawString(x_offset + 800, y_offset, str(user["is_achieved"]))
+        pdf.drawString(x_offset + 900, y_offset, str(user["created_at"]))
+        pdf.drawString(x_offset + 1000, y_offset, str(user["updated_at"]))
         y_offset -= 20
 
     pdf.showPage()
